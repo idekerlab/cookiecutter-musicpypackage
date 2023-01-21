@@ -18,8 +18,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['ndex2',
-                'ndexutil']
+requirements = []
 
 setup_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest-runner',{%- endif %} ]
 
@@ -59,8 +58,6 @@ setup(
     name='{{ cookiecutter.project_slug }}',
     packages=find_packages(include=['{{ cookiecutter.project_slug }}']),
     package_dir={'{{ cookiecutter.project_slug }}': '{{ cookiecutter.project_slug }}'},
-    package_data={'{{ cookiecutter.project_slug }}': ['loadplan.json',
-                                       'style.cx']},
     scripts=[ '{{ cookiecutter.project_slug }}/{{ cookiecutter.loader_name }}.py'],
     setup_requires=setup_requirements,
     test_suite='tests',

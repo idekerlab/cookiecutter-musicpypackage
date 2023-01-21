@@ -10,7 +10,6 @@ RUN pip install /tmp/{{ cookiecutter.project_slug }}
 
 RUN rm -rf /tmp/{{ cookiecutter.project_slug }}
 
-RUN mkdir /{{ cookiecutter.project_slug }}
-WORKDIR /{{ cookiecutter.project_slug }}
+ENTRYPOINT ["/opt/conda/bin/{{ cookiecutter.loader_name }}.py"]
 
-CMD /bin/echo "To use run: {{ cookiecutter.loader_name }}.py"
+CMD ["--help"]

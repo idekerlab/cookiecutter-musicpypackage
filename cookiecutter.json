@@ -1,10 +1,10 @@
 {
-    "full_name": "NDEx Bio",
+    "full_name": "CDAPS",
     "email": "contact@ndexbio.org",
-    "github_username": "ndexbiocontentloader",
+    "github_username": "idekerlab",
     "docker_owner": "{{cookiecutter.github_username}}",
     "data_source": "Biogrid",
-    "project_name": "NDEx {{cookiecutter.data_source}} Content Loader",
+    "project_name": "Community Detection {{cookiecutter.data_source}}",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' content ','').replace(' ', '').replace('-', '_') }}",
     "loader_name": "ndexload{{ cookiecutter.data_source.lower() }}",
     "loader_class_name": "NDEx{{ cookiecutter.project_slug.replace('_','').capitalize() }}Loader",

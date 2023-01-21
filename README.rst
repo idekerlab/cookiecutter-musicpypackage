@@ -1,9 +1,9 @@
 ================================
-Cookiecutter NDEx Content Loader
+Cookiecutter Community Detection
 ================================
 
 
-Cookiecutter_ template for a NDEx Content Loader Python package
+Cookiecutter_ template for Community Detection algorithms
 
 
 Features
@@ -24,7 +24,7 @@ Cookiecutter 1.4.0 or higher)::
 
 Generate a Python package project::
 
-    cookiecutter https://github.com/ndexcontent/cookiecutter-ndexcontentloader.git
+    cookiecutter https://github.com/idekerlab/cookiecutter-cd.git
 
 Then:
 

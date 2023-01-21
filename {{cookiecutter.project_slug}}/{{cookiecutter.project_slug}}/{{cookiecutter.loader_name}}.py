@@ -4,12 +4,10 @@ import argparse
 import sys
 import logging
 from logging import config
-from ndexutil.config import NDExUtilConfig
 import {{ cookiecutter.project_slug }}
 
 logger = logging.getLogger(__name__)
 
-TSV2NICECXMODULE = 'ndexutil.tsv.tsv2nicecx2'
 
 LOG_FORMAT = "%(asctime)-15s %(levelname)s %(relativeCreated)dms " \
              "%(filename)s::%(funcName)s():%(lineno)d %(message)s"
@@ -24,28 +22,15 @@ def _parse_arguments(desc, args):
     help_fm = argparse.RawDescriptionHelpFormatter
     parser = argparse.ArgumentParser(description=desc,
                                      formatter_class=help_fm)
-    parser.add_argument('--profile', help='Profile in configuration '
-                                          'file to use to load '
-                                          'NDEx credentials which means'
-                                          'configuration under [XXX] will be'
-                                          'used '
-                                          '(default '
-                                          '{{ cookiecutter.project_slug }})',
-                        default='{{ cookiecutter.project_slug }}')
     parser.add_argument('--logconf', default=None,
                         help='Path to python logging configuration file in '
                              'this format: https://docs.python.org/3/library/'
                              'logging.config.html#logging-config-fileformat '
                              'Setting this overrides -v parameter which uses '
                              ' default logger. (default None)')
-
-    parser.add_argument('--conf', help='Configuration file to load '
-                                       '(default ~/' +
-                                       NDExUtilConfig.CONFIG_FILE)
     parser.add_argument('--verbose', '-v', action='count', default=0,
                         help='Increases verbosity of logger to standard '
-                             'error for log messages in this module and'
-                             'in ' + TSV2NICECXMODULE + '. Messages are '
+                             'error for log messages in this module. Messages are '
                              'output at these python logging levels '
                              '-v = ERROR, -vv = WARNING, -vvv = INFO, '
                              '-vvvv = DEBUG, -vvvvv = NOTSET (default no '
@@ -72,7 +57,6 @@ def _setup_logging(args):
         level = (50 - (10 * args.verbose))
         logging.basicConfig(format=LOG_FORMAT,
                             level=level)
-        logging.getLogger(TSV2NICECXMODULE).setLevel(level)
         logger.setLevel(level)
         return
 
@@ -90,22 +74,7 @@ class {{ cookiecutter.loader_class_name }}(object):
 
         :param args:
         """
-        self._conf_file = args.conf
-        self._profile = args.profile
-        self._user = None
-        self._pass = None
-        self._server = None
-
-    def _parse_config(self):
-            """
-            Parses config
-            :return:
-            """
-            ncon = NDExUtilConfig(conf_file=self._conf_file)
-            con = ncon.get_config()
-            self._user = con.get(self._profile, NDExUtilConfig.USER)
-            self._pass = con.get(self._profile, NDExUtilConfig.PASSWORD)
-            self._server = con.get(self._profile, NDExUtilConfig.SERVER)
+        pass
 
 
     def run(self):
@@ -114,7 +83,6 @@ class {{ cookiecutter.loader_class_name }}(object):
         :param theargs:
         :return:
         """
-        self._parse_config()
         return 0
 
 def main(args):
@@ -126,26 +94,10 @@ def main(args):
     desc = """
     Version {version}
 
-    Loads {{ cookiecutter.project_name }} data into NDEx (http://ndexbio.org).
-    
-    To connect to NDEx server a configuration file must be passed
-    into --conf parameter. If --conf is unset the configuration 
-    the path ~/{confname} is examined. 
-         
-    The configuration file should be formatted as follows:
-         
-    [<value in --profile (default ncipid)>]
-         
-    {user} = <NDEx username>
-    {password} = <NDEx password>
-    {server} = <NDEx server(omit http) ie public.ndexbio.org>
+    {{ cookiecutter.project_name }} runs algorithm
     
     
-    """.format(confname=NDExUtilConfig.CONFIG_FILE,
-               user=NDExUtilConfig.USER,
-               password=NDExUtilConfig.PASSWORD,
-               server=NDExUtilConfig.SERVER,
-               version={{ cookiecutter.project_slug }}.__version__)
+    """.format(version={{ cookiecutter.project_slug }}.__version__)
     theargs = _parse_arguments(desc, args[1:])
     theargs.program = args[0]
     theargs.version = {{ cookiecutter.project_slug }}.__version__
