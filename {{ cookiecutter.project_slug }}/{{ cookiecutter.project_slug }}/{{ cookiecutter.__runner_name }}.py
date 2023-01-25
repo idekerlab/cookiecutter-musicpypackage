@@ -3,6 +3,7 @@
 import argparse
 import sys
 import logging
+import logging.config
 
 import {{ cookiecutter.project_slug }}
 from {{ cookiecutter.project_slug }}.runner import {{ cookiecutter.__runner_class_name }}
