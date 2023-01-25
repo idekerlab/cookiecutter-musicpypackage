@@ -33,8 +33,7 @@
 Dependencies
 ------------
 
-* `ndex2 <https://pypi.org/project/ndex2>`_
-* `ndexutil <https://pypi.org/project/ndexutil>`_
+* TODO add
 
 Compatibility
 -------------
@@ -49,7 +48,7 @@ Installation
    git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
    cd {{ cookiecutter.project_slug }}
    make dist
-   pip install dist/{{ cookiecutter.loader_name }}*whl
+   pip install dist/{{ cookiecutter.__runner_name }}*whl
 
 
 Run **make** command with no arguments to see other build/deploy options including creation of Docker image 
@@ -80,32 +79,6 @@ Output:
    dockerpush           push image to dockerhub
 
 
-Configuration
--------------
-
-The **{{ cookiecutter.loader_name }}.py** requires a configuration file in the following format be created.
-The default path for this configuration is :code:`~/.ndexutils.conf` but can be overridden with
-:code:`--conf` flag.
-
-**Format of configuration file**
-
-.. code-block::
-
-    [<value in --profile (default {{ cookiecutter.project_slug }})>]
-
-    user = <NDEx username>
-    password = <NDEx password>
-    server = <NDEx server(omit http) ie public.ndexbio.org>
-
-**Example configuration file**
-
-.. code-block::
-
-    [{{ cookiecutter.project_slug}}_dev]
-
-    user = joe123
-    password = somepassword123
-    server = dev.ndexbio.org
 
 
 Needed files
@@ -117,7 +90,7 @@ Needed files
 Usage
 -----
 
-For information invoke :code:`{{ cookiecutter.loader_name }}.py -h`
+For information invoke :code:`{{ cookiecutter.__runner_name }}.py -h`
 
 **Example usage**
 
@@ -125,7 +98,7 @@ For information invoke :code:`{{ cookiecutter.loader_name }}.py -h`
 
 .. code-block::
 
-   {{ cookiecutter.loader_name }}.py # TODO Add other needed arguments here
+   {{ cookiecutter.__runner_name }}.py # TODO Add other needed arguments here
 
 
 Via Docker
@@ -138,7 +111,7 @@ Via Docker
 
 .. code-block::
 
-   docker run -v `pwd`:`pwd` -w `pwd` {{ cookiecutter.docker_owner }}/{{ cookiecutter.project_slug }}:{{ cookiecutter.version }} {{ cookiecutter.loader_name }}.py --conf conf # TODO Add other needed arguments here
+   docker run -v `pwd`:`pwd` -w `pwd` {{ cookiecutter.docker_owner }}/{{ cookiecutter.project_slug }}:{{ cookiecutter.version }} {{ cookiecutter.__runner_name }}.py # TODO Add other needed arguments here
 
 
 Credits
@@ -147,6 +120,5 @@ Credits
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
 .. _NDEx: http://www.ndexbio.org

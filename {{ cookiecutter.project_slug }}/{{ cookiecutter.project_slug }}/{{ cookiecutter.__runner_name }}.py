@@ -3,8 +3,9 @@
 import argparse
 import sys
 import logging
-from logging import config
+
 import {{ cookiecutter.project_slug }}
+from {{ cookiecutter.project_slug }}.runner import {{ cookiecutter.__runner_class_name }}
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +27,7 @@ class Formatter(argparse.ArgumentDefaultsHelpFormatter,
 def _parse_arguments(desc, args):
     """
     Parses command line arguments
+
     :param desc:
     :param args:
     :return:
@@ -38,6 +40,8 @@ def _parse_arguments(desc, args):
                              'logging.config.html#logging-config-fileformat '
                              'Setting this overrides -v parameter which uses '
                              ' default logger. (default None)')
+    parser.add_argument('--exitcode', help='Exit code this command will return',
+                        default=0, type=int)
     parser.add_argument('--verbose', '-v', action='count', default=0,
                         help='Increases verbosity of logger to standard '
                              'error for log messages in this module. Messages are '
@@ -75,38 +79,22 @@ def _setup_logging(args):
                               disable_existing_loggers=False)
 
 
-class {{ cookiecutter.loader_class_name }}(object):
-    """
-    Class to load content
-    """
-    def __init__(self, args):
-        """
-
-        :param args:
-        """
-        pass
-
-
-    def run(self):
-        """
-        Runs content loading for {{ cookiecutter.project_name }}
-        :param theargs:
-        :return:
-        """
-        return 0
-
 def main(args):
     """
     Main entry point for program
-    :param args:
-    :return:
+
+    :param args: arguments passed to command line
+    :type args: :py:class:`python:argparse`
+
+    :return: return value of :py:func:`{{ cookiecutter.__runner_class_name }}.run`
+             or ``2`` if an exception is raised
+    :rtype: int
     """
     desc = """
     Version {version}
 
-    {{ cookiecutter.project_name }} runs algorithm
-    
-    
+    Invokes run() method on {{ cookiecutter.__runner_class_name }}
+
     """.format(version={{ cookiecutter.project_slug }}.__version__)
     theargs = _parse_arguments(desc, args[1:])
     theargs.program = args[0]
@@ -114,10 +102,9 @@ def main(args):
 
     try:
         _setup_logging(theargs)
-        cdtool = {{ cookiecutter.loader_class_name }}(theargs)
-        return cdtool.run()
+        return {{ cookiecutter.__runner_class_name }}(theargs.exitcode).run()
     except Exception as e:
-        logger.exception('Caught exception')
+        logger.exception('Caught exception: ' + str(e))
         return 2
     finally:
         logging.shutdown()

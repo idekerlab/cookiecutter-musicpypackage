@@ -23,9 +23,6 @@ project_name
 project_slug
     The namespace of your Python package. This should be Python import-friendly. Typically, it is the slugified version of project_name.
 
-loader_name
-    Name for command line script to load content. Default is load<project_slug>
-
 project_short_description
     A 1-sentence description of what your Python package does.
 

@@ -58,11 +58,10 @@ setup(
     name='{{ cookiecutter.project_slug }}',
     packages=find_packages(include=['{{ cookiecutter.project_slug }}']),
     package_dir={'{{ cookiecutter.project_slug }}': '{{ cookiecutter.project_slug }}'},
-    scripts=[ '{{ cookiecutter.project_slug }}/{{ cookiecutter.loader_name }}.py'],
+    scripts=[ '{{ cookiecutter.project_slug }}/{{ cookiecutter.__runner_name }}.py'],
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}',
     version=version,
-    zip_safe=False,
-)
+    zip_safe=False)

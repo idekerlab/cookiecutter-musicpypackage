@@ -11,7 +11,7 @@ import pytest
 {% else %}
 import unittest
 {%- endif %}
-from {{ cookiecutter.project_slug }} import {{ cookiecutter.loader_name }}
+from {{ cookiecutter.project_slug }} import {{ cookiecutter.__runner_name }}
 {%- if cookiecutter.use_pytest == 'y' %}
 
 
@@ -43,31 +43,30 @@ class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
 
     def test_parse_arguments(self):
         """Tests parse arguments"""
-        res = {{ cookiecutter.loader_name }}._parse_arguments('hi', [])
+        res = {{ cookiecutter.__runner_name }}._parse_arguments('hi', [])
 
-        self.assertEqual(res.profile, '{{ cookiecutter.project_slug }}')
         self.assertEqual(res.verbose, 0)
+        self.assertEqual(res.exitcode, 0)
         self.assertEqual(res.logconf, None)
-        self.assertEqual(res.conf, None)
 
-        someargs = ['-vv', '--logconf', 'hi']
-        res = {{cookiecutter.loader_name}}._parse_arguments('hi', someargs)
+        someargs = ['-vv', '--logconf', 'hi', '--exitcode', '3']
+        res = {{cookiecutter.__runner_name}}._parse_arguments('hi', someargs)
 
         self.assertEqual(res.verbose, 2)
         self.assertEqual(res.logconf, 'hi')
-
+        self.assertEqual(res.exitcode, 3)
 
     def test_setup_logging(self):
         """ Tests logging setup"""
         try:
-            {{cookiecutter.loader_name}}._setup_logging(None)
+            {{cookiecutter.__runner_name}}._setup_logging(None)
             self.fail('Expected AttributeError')
         except AttributeError:
             pass
 
         # args.logconf is None
-        res = {{cookiecutter.loader_name}}._parse_arguments('hi', [])
-        {{cookiecutter.loader_name}}._setup_logging(res)
+        res = {{cookiecutter.__runner_name}}._parse_arguments('hi', [])
+        {{cookiecutter.__runner_name}}._setup_logging(res)
 
         # args.logconf set to a file
         try:
@@ -97,9 +96,9 @@ args=(sys.stderr,)
 [formatter_formatter]
 format=%(asctime)s %(name)-12s %(levelname)-8s %(message)s""")
 
-            res = {{cookiecutter.loader_name}}._parse_arguments('hi', ['--logconf',
+            res = {{cookiecutter.__runner_name}}._parse_arguments('hi', ['--logconf',
                                                                        logfile])
-            {{cookiecutter.loader_name}}._setup_logging(res)
+            {{cookiecutter.__runner_name}}._setup_logging(res)
 
         finally:
             shutil.rmtree(temp_dir)
@@ -110,7 +109,7 @@ format=%(asctime)s %(name)-12s %(levelname)-8s %(message)s""")
         # try where loading config is successful
         try:
             temp_dir = tempfile.mkdtemp()
-            res = {{cookiecutter.loader_name}}.main(['myprog.py'])
+            res = {{cookiecutter.__runner_name}}.main(['myprog.py'])
             self.assertEqual(res, 0)
         finally:
             shutil.rmtree(temp_dir)

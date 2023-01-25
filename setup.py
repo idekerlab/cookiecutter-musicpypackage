@@ -5,11 +5,11 @@ setup(
     name='cookiecutter-pypackage',
     packages=[],
     version='0.1.0',
-    description='Cookiecutter Community Detection algorithms',
+    description='Cookiecutter Idekerlab Python Package',
     author='Christopher Churas',
     license='BSD',
     author_email='churas.camera@gmail.com',
-    url='https://github.com/idekerlab/cookiecutter-cd',
+    url='https://github.com/idekerlab/cookiecutter-pypackage',
     keywords=['cookiecutter', 'template', 'package', ],
     classifiers=[
         'Development Status :: 4 - Beta',
