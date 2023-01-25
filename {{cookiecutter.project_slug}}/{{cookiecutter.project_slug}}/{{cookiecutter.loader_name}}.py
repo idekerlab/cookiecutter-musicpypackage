@@ -12,6 +12,17 @@ logger = logging.getLogger(__name__)
 LOG_FORMAT = "%(asctime)-15s %(levelname)s %(relativeCreated)dms " \
              "%(filename)s::%(funcName)s():%(lineno)d %(message)s"
 
+
+class Formatter(argparse.ArgumentDefaultsHelpFormatter,
+                argparse.RawDescriptionHelpFormatter):
+    """
+    Combine two Formatters to get help and default values
+    displayed when showing help
+
+    """
+    pass
+
+
 def _parse_arguments(desc, args):
     """
     Parses command line arguments
@@ -19,9 +30,8 @@ def _parse_arguments(desc, args):
     :param args:
     :return:
     """
-    help_fm = argparse.RawDescriptionHelpFormatter
     parser = argparse.ArgumentParser(description=desc,
-                                     formatter_class=help_fm)
+                                     formatter_class=Formatter)
     parser.add_argument('--logconf', default=None,
                         help='Path to python logging configuration file in '
                              'this format: https://docs.python.org/3/library/'
@@ -46,8 +56,8 @@ def _setup_logging(args):
     """
     Sets up logging based on parsed command line arguments.
     If args.logconf is set use that configuration otherwise look
-    at args.verbose and set logging for this module and the one
-    in ndexutil specified by TSV2NICECXMODULE constant
+    at args.verbose and set logging for this module
+
     :param args: parsed command line arguments from argparse
     :raises AttributeError: If args is None or args.logconf is None
     :return: None
@@ -104,8 +114,8 @@ def main(args):
 
     try:
         _setup_logging(theargs)
-        loader = {{ cookiecutter.loader_class_name }}(theargs)
-        return loader.run()
+        cdtool = {{ cookiecutter.loader_class_name }}(theargs)
+        return cdtool.run()
     except Exception as e:
         logger.exception('Caught exception')
         return 2
