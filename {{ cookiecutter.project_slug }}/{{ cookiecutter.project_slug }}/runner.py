@@ -14,7 +14,7 @@ class {{ cookiecutter.__runner_class_name }}(object):
         """
         Constructor
 
-        :param exitcode: value to return via :py:func:`{{ cookiecutter.__runner_class_name }}.run` method
+        :param exitcode: value to return via :py:meth:`.{{ cookiecutter.__runner_class_name }}.run` method
         :type int:
         """
         self._exitcode = exitcode

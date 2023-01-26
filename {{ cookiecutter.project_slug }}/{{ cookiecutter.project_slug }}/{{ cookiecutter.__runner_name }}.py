@@ -29,9 +29,12 @@ def _parse_arguments(desc, args):
     """
     Parses command line arguments
 
-    :param desc:
-    :param args:
-    :return:
+    :param desc: description to display on command line
+    :type desc: str
+    :param args: command line arguments usually :py:func:`sys.argv[1:]`
+    :type args: list
+    :return: arguments parsed by :py:mod:`argparse`
+    :rtype: :py:class:`argparse.Namespace`
     """
     parser = argparse.ArgumentParser(description=desc,
                                      formatter_class=Formatter)
@@ -84,10 +87,10 @@ def main(args):
     """
     Main entry point for program
 
-    :param args: arguments passed to command line
-    :type args: :py:class:`python:argparse`
+    :param args: arguments passed to command line usually :py:func:`sys.argv[1:]`
+    :type args: list
 
-    :return: return value of :py:func:`{{ cookiecutter.__runner_class_name }}.run`
+    :return: return value of :py:meth:`{{ cookiecutter.project_slug }}.runner.{{ cookiecutter.__runner_class_name }}.run`
              or ``2`` if an exception is raised
     :rtype: int
     """
