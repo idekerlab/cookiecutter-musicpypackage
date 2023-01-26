@@ -7,9 +7,18 @@ Cookiecutter_ template for Idekerlab Python packages. This template includes
 a command line script and an example class under the ``runner`` module
 
 
-* Derived from the excellent cookie cutter template: https://github.com/audreyr/cookiecutter
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+
+Features
+---------
+
+* Derived from the excellent cookie cutter template: https://github.com/audreyr/cookiecutter
+* Command line script template with properly documented methods and functions
+* Support for automated build (Travis-CI_) and code coverage
+* Support for automated documentation (ReadTheDocs_)
+* ``make`` commands for build, document generation, test, and deployment
+* Correct copyright and license for MuSIC and UCSD
+
 
 
 Quickstart
@@ -66,7 +75,7 @@ For more details, see the `cookiecutter-pypackage tutorial`_.
 
 .. _`cookiecutter-pypackage tutorial`: https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html
 
-
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _Travis-CI: http://travis-ci.org/
 .. _Tox: http://testrun.org/tox/
 .. _Sphinx: http://sphinx-doc.org/
@@ -76,12 +85,3 @@ For more details, see the `cookiecutter-pypackage tutorial`_.
 .. _Punch: https://github.com/lgiordani/punch
 .. _PyPi: https://pypi.org
 .. _TestPyPi: https://test.pypi.org
-
-
-.. _`Nekroze/cookiecutter-pypackage`: https://github.com/Nekroze/cookiecutter-pypackage
-.. _`tony/cookiecutter-pypackage-pythonic`: https://github.com/tony/cookiecutter-pypackage-pythonic
-.. _`ardydedase/cookiecutter-pypackage`: https://github.com/ardydedase/cookiecutter-pypackage
-.. _`lgiordani/cookiecutter-pypackage`: https://github.com/lgiordani/cookiecutter-pypackage
-.. _github comparison view: https://github.com/tony/cookiecutter-pypackage-pythonic/compare/audreyr:master...master
-.. _`network`: https://github.com/audreyr/cookiecutter-pypackage/network
-.. _`family tree`: https://github.com/audreyr/cookiecutter-pypackage/network/members
