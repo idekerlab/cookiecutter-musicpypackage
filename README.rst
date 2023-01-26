@@ -2,11 +2,8 @@
 Cookiecutter Idekerlab Python Package
 ======================================
 
-
 Cookiecutter_ template for Idekerlab Python packages. This template includes
 a command line script and an example class under the ``runner`` module
-
-
 
 
 Features
@@ -18,8 +15,6 @@ Features
 * Support for automated documentation (ReadTheDocs_)
 * ``make`` commands for build, document generation, test, and deployment
 * Correct copyright and license for MuSIC and UCSD
-
-
 
 Quickstart
 ----------
@@ -68,20 +63,15 @@ Then:
 * Release your package to test pypi by running: ``make testrelease``
 * Release your package to pypi by running: ``make release``
 
-.. _`pip docs for requirements files`: https://pip.pypa.io/en/stable/user_guide/#requirements-files
-.. _Register: https://packaging.python.org/distributing/#register-your-project
 
 For more details, see the `cookiecutter-pypackage tutorial`_.
 
+.. _`pip docs for requirements files`: https://pip.pypa.io/en/stable/user_guide/#requirements-files
 .. _`cookiecutter-pypackage tutorial`: https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html
-
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _Travis-CI: http://travis-ci.org/
-.. _Tox: http://testrun.org/tox/
 .. _Sphinx: http://sphinx-doc.org/
 .. _ReadTheDocs: https://readthedocs.io/
-.. _`pyup.io`: https://pyup.io/
-.. _Bumpversion: https://github.com/peritus/bumpversion
 .. _Punch: https://github.com/lgiordani/punch
 .. _PyPi: https://pypi.org
 .. _TestPyPi: https://test.pypi.org
