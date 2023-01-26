@@ -62,7 +62,7 @@ Then:
 
 .. warning::
 
-    **DO NOT PUT ``~/.pypirc`` in repo, it should be in your home directory
+    **DO NOT PUT** ``~/.pypirc`` **in repo, it should be in your home directory
     with only you having read access**
 
 * Release your package to test pypi by running: ``make testrelease``
