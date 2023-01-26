@@ -94,7 +94,7 @@ you already have `virtualenv` and `Git` installed and ready to go.
 
   .. code-block:: bash
 
-    $ pip install -rrequirements_dev.txt
+    $ pip install -r requirements_dev.txt
     $ py.test ./tests
 
    If you get any errors while installing cryptography package (something like #include <openssl/aes.h>).
@@ -135,7 +135,7 @@ Before you submit a pull request, check that it meets these guidelines:
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
 
-3. The pull request should work for Python 2.7, 3.4, 3.5 and 3.6, and for PyPy. Check
+3. The pull request should work for Python 3.6+, and for PyPy. Check
    https://travis-ci.org/idekerlab/cookiecutter-cd/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
