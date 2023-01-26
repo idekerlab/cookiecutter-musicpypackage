@@ -85,9 +85,11 @@ servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
 testrelease: dist ## package and upload a TEST release
+	twine check dist/*
 	twine upload dist/* -r testpypi
 
 release: dist ## package and upload a release
+	twine check dist/*
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
