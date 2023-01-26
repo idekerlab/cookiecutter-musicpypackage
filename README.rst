@@ -52,8 +52,9 @@ Then:
     password:<PYPI PASSWORD>
 
 .. warning::
-    DO NOT PUT ``~/.pypirc`` in repo, it should be in your home directory
-    with only you having read access
+
+    **DO NOT PUT ``~/.pypirc`` in repo, it should be in your home directory
+    with only you having read access**
 
 * Release your package to test pypi by running: ``make testrelease``
 * Release your package to pypi by running: ``make release``
