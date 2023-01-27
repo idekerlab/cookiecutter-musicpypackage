@@ -36,6 +36,7 @@ import {{ cookiecutter.project_slug }}
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.intersphinx',
+              'sphinx.ext.autosectionlabel',
               'sphinx.ext.viewcode']
 
 # intersphinx mapping
@@ -45,6 +46,9 @@ intersphinx_mapping = {"python": ("https://docs.python.org/3", None),
                        "pandas": ("https://pandas.pydata.org/docs/", None),
                        "numpy": ("https://numpy.org/doc/stable/", None)
                       }
+
+# prefix document on section labels for references
+autosectionlabel_prefix_document = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
