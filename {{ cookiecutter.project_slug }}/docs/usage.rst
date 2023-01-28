@@ -2,6 +2,8 @@
 Usage
 =====
 
+This page should provide information on how to use {{ cookiecutter.project_slug }}
+
 In a project
 --------------
 
