@@ -11,6 +11,7 @@ deployment of **{{ cookiecutter.project_slug }}**
    :caption: Contents:
 
    contributing
+   devbranches
    newrelease
    pypircfile
    integrationtesting
