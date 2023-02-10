@@ -89,7 +89,7 @@ against those changes.
 
 #. Make changes
 
-Modify code in this repo as desired
+   Modify code in this repo as desired
 
 #. Build and deploy
 
