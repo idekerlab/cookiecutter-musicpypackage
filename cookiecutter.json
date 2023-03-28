@@ -7,6 +7,8 @@
     "project_name": "cdtool",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '').replace('-', '_') }}",
     "__runner_name": "{{ cookiecutter.project_slug }}cmd",
+    "__error_class_name": "{{ cookiecutter.project_slug.replace('_','').capitalize() }}Error",
+    "__runner_lower_class_name": "{{ cookiecutter.project_slug.replace('_','') }}",
     "__runner_class_name": "{{ cookiecutter.project_slug.replace('_','').capitalize() }}Runner",
     "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package with command line",
     "pypi_username": "{{ cookiecutter.github_username }}",
