@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """Tests for `{{ cookiecutter.project_slug }}` package."""
-
+import os
+import tempfile
+import shutil
 {% if cookiecutter.use_pytest == 'y' -%}
 import pytest
 {% else %}
@@ -40,13 +42,18 @@ class Test{{ cookiecutter.__runner_class_name|title }}(unittest.TestCase):
 
     def test_constructor(self):
         """Tests constructor"""
-        myobj = {{ cookiecutter.__runner_class_name }}(0)
+        myobj = {{ cookiecutter.__runner_class_name }}(outdir='foo', exitcode=0)
 
         self.assertIsNotNone(myobj)
 
     def test_run(self):
         """ Tests run()"""
-        myobj = {{cookiecutter.__runner_class_name}}(4)
-        self.assertEqual(4, myobj.run())
+        temp_dir = tempfile.mkdtemp()
+        try:
+            myobj = {{cookiecutter.__runner_class_name}}(outdir=os.path.join(temp_dir, 'foo'),
+                                                         exitcode=4)
+            self.assertEqual(4, myobj.run())
+        finally:
+            shutil.rmtree(temp_dir)
 
 {%- endif %}

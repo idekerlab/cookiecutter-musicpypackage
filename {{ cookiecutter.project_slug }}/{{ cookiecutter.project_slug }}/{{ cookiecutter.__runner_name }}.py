@@ -4,25 +4,12 @@ import argparse
 import sys
 import logging
 import logging.config
-
+from cellmaps_utils import logutils
+from cellmaps_utils import constants
 import {{ cookiecutter.project_slug }}
 from {{ cookiecutter.project_slug }}.runner import {{ cookiecutter.__runner_class_name }}
 
 logger = logging.getLogger(__name__)
-
-
-LOG_FORMAT = "%(asctime)-15s %(levelname)s %(relativeCreated)dms " \
-             "%(filename)s::%(funcName)s():%(lineno)d %(message)s"
-
-
-class Formatter(argparse.ArgumentDefaultsHelpFormatter,
-                argparse.RawDescriptionHelpFormatter):
-    """
-    Combine two Formatters to get help and default values
-    displayed when showing help
-
-    """
-    pass
 
 
 def _parse_arguments(desc, args):
@@ -37,7 +24,9 @@ def _parse_arguments(desc, args):
     :rtype: :py:class:`argparse.Namespace`
     """
     parser = argparse.ArgumentParser(description=desc,
-                                     formatter_class=Formatter)
+                                     formatter_class=constants.ArgParseFormatter)
+    parser.add_argument('outdir',
+                        help='Directory to write results to')
     parser.add_argument('--logconf', default=None,
                         help='Path to python logging configuration file in '
                              'this format: https://docs.python.org/3/library/'
@@ -46,6 +35,11 @@ def _parse_arguments(desc, args):
                              ' default logger. (default None)')
     parser.add_argument('--exitcode', help='Exit code this command will return',
                         default=0, type=int)
+    parser.add_argument('--provenance',
+                        help='Path to file containing provenance '
+                             'information about input files in JSON format. '
+                             'This is required and not including will output '
+                             'and error message with example of file')
     parser.add_argument('--verbose', '-v', action='count', default=0,
                         help='Increases verbosity of logger to standard '
                              'error for log messages in this module. Messages are '
@@ -58,29 +52,6 @@ def _parse_arguments(desc, args):
                                  {{ cookiecutter.project_slug }}.__version__))
 
     return parser.parse_args(args)
-
-
-def _setup_logging(args):
-    """
-    Sets up logging based on parsed command line arguments.
-    If args.logconf is set use that configuration otherwise look
-    at args.verbose and set logging for this module
-
-    :param args: parsed command line arguments from argparse
-    :raises AttributeError: If args is None or args.logconf is None
-    :return: None
-    """
-
-    if args.logconf is None:
-        level = (50 - (10 * args.verbose))
-        logging.basicConfig(format=LOG_FORMAT,
-                            level=level)
-        logger.setLevel(level)
-        return
-
-    # logconf was set use that file
-    logging.config.fileConfig(args.logconf,
-                              disable_existing_loggers=False)
 
 
 def main(args):
@@ -105,8 +76,10 @@ def main(args):
     theargs.version = {{ cookiecutter.project_slug }}.__version__
 
     try:
-        _setup_logging(theargs)
-        return {{ cookiecutter.__runner_class_name }}(theargs.exitcode).run()
+        logutils.setup_cmd_logging(theargs)
+        return {{ cookiecutter.__runner_class_name }}(outdir=theargs.outdir,
+                                                      exitcode=theargs.exitcode,
+                                                      input_data_dict=theargs.__dict__).run()
     except Exception as e:
         logger.exception('Caught exception: ' + str(e))
         return 2

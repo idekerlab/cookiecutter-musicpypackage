@@ -6,6 +6,7 @@
 import os
 import tempfile
 import shutil
+
 {% if cookiecutter.use_pytest == 'y' -%}
 import pytest
 {% else %}
@@ -43,73 +44,30 @@ class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
 
     def test_parse_arguments(self):
         """Tests parse arguments"""
-        res = {{ cookiecutter.__runner_name }}._parse_arguments('hi', [])
+        res = {{ cookiecutter.__runner_name }}._parse_arguments('hi', ['dir'])
 
-        self.assertEqual(res.verbose, 0)
-        self.assertEqual(res.exitcode, 0)
-        self.assertEqual(res.logconf, None)
+        self.assertEqual('dir', res.outdir)
+        self.assertEqual(0, res.verbose)
+        self.assertEqual(0, res.exitcode)
+        self.assertEqual(None, res.logconf)
 
-        someargs = ['-vv', '--logconf', 'hi', '--exitcode', '3']
+        someargs = ['dir', '-vv', '--logconf', 'hi', '--exitcode', '3']
         res = {{cookiecutter.__runner_name}}._parse_arguments('hi', someargs)
 
-        self.assertEqual(res.verbose, 2)
-        self.assertEqual(res.logconf, 'hi')
-        self.assertEqual(res.exitcode, 3)
+        self.assertEqual('dir', res.outdir)
+        self.assertEqual(2, res.verbose)
+        self.assertEqual('hi', res.logconf)
+        self.assertEqual(3, res.exitcode)
 
-    def test_setup_logging(self):
-        """ Tests logging setup"""
-        try:
-            {{cookiecutter.__runner_name}}._setup_logging(None)
-            self.fail('Expected AttributeError')
-        except AttributeError:
-            pass
-
-        # args.logconf is None
-        res = {{cookiecutter.__runner_name}}._parse_arguments('hi', [])
-        {{cookiecutter.__runner_name}}._setup_logging(res)
-
-        # args.logconf set to a file
-        try:
-            temp_dir = tempfile.mkdtemp()
-
-            logfile = os.path.join(temp_dir, 'log.conf')
-            with open(logfile, 'w') as f:
-                f.write("""[loggers]
-keys=root
-
-[handlers]
-keys=stream_handler
-
-[formatters]
-keys=formatter
-
-[logger_root]
-level=DEBUG
-handlers=stream_handler
-
-[handler_stream_handler]
-class=StreamHandler
-level=DEBUG
-formatter=formatter
-args=(sys.stderr,)
-
-[formatter_formatter]
-format=%(asctime)s %(name)-12s %(levelname)-8s %(message)s""")
-
-            res = {{cookiecutter.__runner_name}}._parse_arguments('hi', ['--logconf',
-                                                                       logfile])
-            {{cookiecutter.__runner_name}}._setup_logging(res)
-
-        finally:
-            shutil.rmtree(temp_dir)
 
     def test_main(self):
         """Tests main function"""
 
+        temp_dir = tempfile.mkdtemp()
         # try where loading config is successful
         try:
-            temp_dir = tempfile.mkdtemp()
-            res = {{cookiecutter.__runner_name}}.main(['myprog.py'])
+            outdir = os.path.join(temp_dir, 'out')
+            res = {{cookiecutter.__runner_name}}.main(['myprog.py', outdir])
             self.assertEqual(res, 0)
         finally:
             shutil.rmtree(temp_dir)
