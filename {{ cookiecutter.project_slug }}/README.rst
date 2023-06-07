@@ -33,12 +33,12 @@
 Dependencies
 ------------
 
-* TODO add
+* `cellmaps_utils <https://pypi.org/project/cellmaps-utils>`__
 
 Compatibility
 -------------
 
-* Python 3.3+
+* Python 3.8+
 
 Installation
 ------------
@@ -48,7 +48,7 @@ Installation
    git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
    cd {{ cookiecutter.project_slug }}
    make dist
-   pip install dist/{{ cookiecutter.__runner_name }}*whl
+   pip install dist/{{ cookiecutter.project_slug }}*whl
 
 
 Run **make** command with no arguments to see other build/deploy options including creation of Docker image 
