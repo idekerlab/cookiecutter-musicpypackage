@@ -34,6 +34,6 @@ Via Docker
 
 .. code-block::
 
-   docker run -v `pwd`:`pwd` -w `pwd` {{ cookiecutter.docker_owner }}/{{ cookiecutter.project_slug }}:{{ cookiecutter.version }} {{ cookiecutter.__runner_name }}.py # TODO Add other needed arguments here
+   Coming soon ...
 
 

@@ -47,7 +47,7 @@ class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
         res = {{ cookiecutter.__runner_name }}._parse_arguments('hi', ['dir'])
 
         self.assertEqual('dir', res.outdir)
-        self.assertEqual(0, res.verbose)
+        self.assertEqual(1, res.verbose)
         self.assertEqual(0, res.exitcode)
         self.assertEqual(None, res.logconf)
 
@@ -55,7 +55,7 @@ class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
         res = {{cookiecutter.__runner_name}}._parse_arguments('hi', someargs)
 
         self.assertEqual('dir', res.outdir)
-        self.assertEqual(2, res.verbose)
+        self.assertEqual(3, res.verbose)
         self.assertEqual('hi', res.logconf)
         self.assertEqual(3, res.exitcode)
 
@@ -67,7 +67,7 @@ class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
         # try where loading config is successful
         try:
             outdir = os.path.join(temp_dir, 'out')
-            res = {{cookiecutter.__runner_name}}.main(['myprog.py', outdir])
+            res = {{cookiecutter.__runner_name}}.main(['myprog.py', outdir, '--skip_logging'])
             self.assertEqual(res, 0)
         finally:
             shutil.rmtree(temp_dir)

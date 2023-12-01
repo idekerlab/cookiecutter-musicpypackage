@@ -42,7 +42,8 @@ class Test{{ cookiecutter.__runner_class_name|title }}(unittest.TestCase):
 
     def test_constructor(self):
         """Tests constructor"""
-        myobj = {{ cookiecutter.__runner_class_name }}(outdir='foo', exitcode=0)
+        myobj = {{ cookiecutter.__runner_class_name }}(outdir='foo', skip_logging=True,
+                                                       exitcode=0)
 
         self.assertIsNotNone(myobj)
 
@@ -51,6 +52,7 @@ class Test{{ cookiecutter.__runner_class_name|title }}(unittest.TestCase):
         temp_dir = tempfile.mkdtemp()
         try:
             myobj = {{cookiecutter.__runner_class_name}}(outdir=os.path.join(temp_dir, 'foo'),
+                                                         skip_logging=True,
                                                          exitcode=4)
             self.assertEqual(4, myobj.run())
         finally:

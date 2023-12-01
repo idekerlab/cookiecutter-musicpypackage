@@ -35,17 +35,20 @@ def _parse_arguments(desc, args):
                              ' default logger. (default None)')
     parser.add_argument('--exitcode', help='Exit code this command will return',
                         default=0, type=int)
+    parser.add_argument('--skip_logging', action='store_true',
+                        help='If set, output.log, error.log '
+                             'files will not be created')
     parser.add_argument('--provenance',
                         help='Path to file containing provenance '
                              'information about input files in JSON format. '
                              'This is required and not including will output '
                              'and error message with example of file')
-    parser.add_argument('--verbose', '-v', action='count', default=0,
+    parser.add_argument('--verbose', '-v', action='count', default=1,
                         help='Increases verbosity of logger to standard '
                              'error for log messages in this module. Messages are '
                              'output at these python logging levels '
-                             '-v = ERROR, -vv = WARNING, -vvv = INFO, '
-                             '-vvvv = DEBUG, -vvvvv = NOTSET (default no '
+                             '-v = WARNING, -vv = INFO, '
+                             '-vvv = DEBUG, -vvvv = NOTSET (default ERROR '
                              'logging)')
     parser.add_argument('--version', action='version',
                         version=('%(prog)s ' +
@@ -79,6 +82,7 @@ def main(args):
         logutils.setup_cmd_logging(theargs)
         return {{ cookiecutter.__runner_class_name }}(outdir=theargs.outdir,
                                                       exitcode=theargs.exitcode,
+                                                      skip_logging=theargs.skip_logging,
                                                       input_data_dict=theargs.__dict__).run()
     except Exception as e:
         logger.exception('Caught exception: ' + str(e))
