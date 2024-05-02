@@ -5,13 +5,15 @@ Welcome to {{ cookiecutter.project_name }}'s documentation!
 
 
 {% if is_open_source %}
-.. image:: https://img.shields.io/pypi/v/{{ cookiecutter.project_slug }}.svg
+|a| |b| |c|
+
+.. |a| image:: https://img.shields.io/pypi/v/{{ cookiecutter.project_slug }}.svg
         :target: https://pypi.python.org/pypi/{{ cookiecutter.project_slug }}
 
-.. image:: https://app.travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.svg
+.. |b| image:: https://app.travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.svg
         :target: https://app.travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
 
-.. image:: https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest
+.. |c| image:: https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest
         :target: https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 {%- endif %}
@@ -27,6 +29,7 @@ Welcome to {{ cookiecutter.project_name }}'s documentation!
 
 {% if is_open_source %}
 * Free software: {{ cookiecutter.open_source_license }}
+* Source code: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
 {% endif %}
 
 .. toctree::
