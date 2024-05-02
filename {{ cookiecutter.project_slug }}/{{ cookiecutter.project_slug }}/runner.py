@@ -5,6 +5,7 @@ import time
 import logging
 from cellmaps_utils import logutils
 from cellmaps_utils.provenance import ProvenanceUtil
+from {{ cookiecutter.project_slug }}.exceptions import {{ cookiecutter.__error_class_name }}
 
 import {{ cookiecutter.project_slug }}
 

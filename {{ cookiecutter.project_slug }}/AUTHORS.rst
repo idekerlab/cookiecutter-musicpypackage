@@ -2,7 +2,7 @@
 Credits
 =======
 
-Development Lead
+Developers
 ----------------
 
 * {{ cookiecutter.full_name }} <{{ cookiecutter.email }}>

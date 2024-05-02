@@ -162,7 +162,7 @@ If the above works perform the formal release by running:
     pip install {{ cookiecutter.project_slug }}
 
 
-.. _Travis: https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+.. _Travis: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
 .. _main: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/main
 .. _PyPi: https://pypi.org
 .. _TestPyPi: https://test.pypi.org

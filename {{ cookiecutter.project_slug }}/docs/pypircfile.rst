@@ -17,12 +17,12 @@ To run ``make testrelease`` or ``make release`` to deploy {{ cookiecutter.projec
 
     [testpypi]
     repository:https://test.pypi.org/legacy/
-    username = <USERNAME>
-    password = <PASSWORD>
+    username = __token__
+    password = <API TOKEN FROM PYPI>
 
     [pypi]
-    username:<USERNAME>
-    password:<PASSWORD>
+    username = __token__
+    password = <API TOKEN FROM PYPI>
 
 .. _TestPyPi: https://test.pypi.org
 .. _PyPi: https://pypi.org
