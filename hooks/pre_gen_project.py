@@ -15,7 +15,7 @@ if not re.match(MODULE_REGEX, module_name):
     #Exit to cancel project
     sys.exit(1)
 
-prodpypi_url = 'https://pypi.org/project/' + module_name
+prodpypi_url = 'https://pypi.org/pypi/' + module_name + '/json'
 
 resp = requests.get(prodpypi_url, timeout=30)
 
@@ -25,7 +25,7 @@ if resp.status_code == 200:
           ') Please use a different name')
     sys.exit(2)
 
-testpypi_url = 'https://test.pypi.org/project/' + module_name
+testpypi_url = 'https://test.pypi.org/pypi/' + module_name + '/json'
 resp = requests.get(testpypi_url, timeout=30)
 
 if resp.status_code == 200:
