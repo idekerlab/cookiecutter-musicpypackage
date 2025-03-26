@@ -41,7 +41,7 @@ Dependencies
 Compatibility
 -------------
 
-* Python 3.8+
+* Python {{ cookiecutter.minimum_python_version }}+
 
 Installation
 ------------
@@ -50,11 +50,11 @@ Installation
 
    git clone https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
    cd {{ cookiecutter.project_slug }}
-   make dist
-   pip install dist/{{ cookiecutter.project_slug }}*whl
+   pip install -r requirements_dev.txt
+   make install
 
 
-Run **make** command with no arguments to see other build/deploy options including creation of Docker image 
+Run **make** command with no arguments to see other build/deploy options including creation of Docker image
 
 .. code-block::
 
@@ -83,6 +83,25 @@ Output:
 
 For developers
 -------------------------------------------
+
+.. note::
+
+    Commands below assume ``pip install -r requirements_dev.txt`` has been run
+
+Run tests
+~~~~~~~~~~
+
+To run unit tests:
+
+.. code-block::
+
+    make test
+
+To run tests in multiple python environments defined by ``tox.ini``:
+
+.. code-block::
+
+    make test-all
 
 To deploy development versions of this package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
