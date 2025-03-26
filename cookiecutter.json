@@ -1,5 +1,5 @@
 {
-    "full_name": "Your Name",
+    "full_name": "Cell Maps team",
     "email": "tools@cm4ai.org",
     "github_username": "idekerlab",
     "copyright": "The Regents of the University of California",
@@ -12,6 +12,9 @@
     "__runner_class_name": "{{ cookiecutter.project_slug.replace('_','').capitalize() }}Runner",
     "project_short_description": "Python Boilerplate contains all the boilerplate you need to create a Python package with command line",
     "pypi_username": "{{ cookiecutter.github_username }}",
+    "computation_name": "Name of computation for FAIRSCAPE eg: AP-MS embedding",
+    "minimum_python_version": "3.8",
+    "setuptoolsversion": "58.0.0",
     "version": "0.1.0",
     "use_pytest": "n",
     "use_pypi_deployment_with_travis": "n",
