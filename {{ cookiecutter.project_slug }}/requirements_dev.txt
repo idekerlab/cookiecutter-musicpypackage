@@ -9,3 +9,7 @@ Sphinx>=1.8.1
 twine>=1.12.1
 sphinx-rtd-theme
 pytest
+setuptools>={{ cookiecutter.setuptoolsversion }}
+build
+tox-conda
+virtualenv
