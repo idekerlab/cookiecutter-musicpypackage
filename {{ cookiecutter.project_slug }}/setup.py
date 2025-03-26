@@ -9,8 +9,17 @@ from setuptools import setup, find_packages
 
 with open(os.path.join('{{ cookiecutter.project_slug }}', '__init__.py')) as ver_file:
     for line in ver_file:
+        line = line.rstrip()
         if line.startswith('__version__'):
-            version=re.sub("'", "", line[line.index("'"):])
+            version = re.sub("'", "", line[line.index("'"):])
+        elif line.startswith('__description__'):
+            desc = re.sub("'", "", line[line.index("'"):])
+        elif line.startswith('__repo_url__'):
+            repo_url = re.sub("'", "", line[line.index("'"):])
+        elif line.startswith('__author__'):
+            author = re.sub("'", "", line[line.index("'"):])
+        elif line.startswith('__email__'):
+            email = re.sub("'", "", line[line.index("'"):])
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -22,8 +31,6 @@ requirements = ['cellmaps_utils']
 
 setup_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest-runner',{%- endif %} ]
 
-test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest',{%- endif %} ]
-
 {%- set license_classifiers = {
     'MIT license': 'License :: OSI Approved :: MIT License',
     'BSD license': 'License :: OSI Approved :: BSD License',
@@ -33,8 +40,8 @@ test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}'pytest',{%- endif 
 } %}
 
 setup(
-    author="{{ cookiecutter.full_name.replace('\"', '\\\"') }}",
-    author_email='{{ cookiecutter.email }}',
+    author=author,
+    author_email=email,
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -47,7 +54,7 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11'
     ],
-    description="{{ cookiecutter.project_short_description }}",
+    description=desc,
     install_requires=requirements,
 {%- if cookiecutter.open_source_license in license_classifiers %}
     license="{{ cookiecutter.open_source_license }}",
@@ -61,8 +68,7 @@ setup(
     package_dir={'{{ cookiecutter.project_slug }}': '{{ cookiecutter.project_slug }}'},
     scripts=[ '{{ cookiecutter.project_slug }}/{{ cookiecutter.__runner_name }}.py'],
     setup_requires=setup_requirements,
-    test_suite='tests',
-    tests_require=test_requirements,
-    url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}',
+
+    url=repo_url,
     version=version,
     zip_safe=False)
