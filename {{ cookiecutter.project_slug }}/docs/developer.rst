@@ -15,4 +15,5 @@ deployment of **{{ cookiecutter.project_slug }}**
    newrelease
    pypircfile
    integrationtesting
+   cicd
    versioningscheme
