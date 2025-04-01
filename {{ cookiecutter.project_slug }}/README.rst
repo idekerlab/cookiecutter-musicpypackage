@@ -81,6 +81,19 @@ Output:
    dockerbuild          build docker image and store in local repository
    dockerpush           push image to dockerhub
 
+Usage
+-----
+
+For information invoke :code:`{{ cookiecutter.__runner_name }}.py -h`
+
+**Example usage**
+
+**TODO:** Add information about example usage
+
+.. code-block::
+
+   {{ cookiecutter.__runner_name }}.py # TODO Add other needed arguments here
+
 For developers
 -------------------------------------------
 
@@ -102,6 +115,42 @@ To run tests in multiple python environments defined by ``tox.ini``:
 .. code-block::
 
     make test-all
+
+Continuous integration / Continuous development
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A ``.travis.yml`` file is included in this
+repo to easily enable continous integration / continuous development
+via `Travis <https://travis-ci.com>`__
+
+The configuration leverages `coverage <https://pypi.org/project/coverage/>`__
+and `coveralls <https://coveralls.io>`__ to log
+code coverage
+
+
+Make documentation
+~~~~~~~~~~~~~~~~~~~~
+
+Documentation for this code is stored under ``docs/`` and can
+be easily configured for display on `Read the Docs <https://readthedocs.io>`__
+once the repo is linked from within `Read the Docs <https://readthedocs.io>`__
+via github account
+
+Command below requires additional packages that can be installed
+with this command:
+
+.. code-block::
+
+    pip install -r docs/requirements.txt
+
+Running the command below creates html documentation under
+``docs/_build/html`` that is displayed to the user via
+"default" browser
+
+.. code-block::
+
+    make docs
+
 
 To deploy development versions of this package
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,20 +175,6 @@ Needed files
 ------------
 
 **TODO:** Add description of needed files
-
-
-Usage
------
-
-For information invoke :code:`{{ cookiecutter.__runner_name }}.py -h`
-
-**Example usage**
-
-**TODO:** Add information about example usage
-
-.. code-block::
-
-   {{ cookiecutter.__runner_name }}.py # TODO Add other needed arguments here
 
 
 Via Docker
